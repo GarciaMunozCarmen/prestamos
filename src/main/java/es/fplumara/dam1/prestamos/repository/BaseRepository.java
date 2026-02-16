@@ -2,6 +2,7 @@ package es.fplumara.dam1.prestamos.repository;
 
 import es.fplumara.dam1.prestamos.model.Identificable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,11 +26,11 @@ public class BaseRepository <T extends Identificable> implements Repository<T>{
 
     @Override
     public List<T> listAll() {
-        return List.of();
+        return new ArrayList<>(datos.values());
     }
 
     @Override
     public void delete(String id) {
-
+        datos.remove(id);
     }
 }
