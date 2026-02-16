@@ -9,11 +9,17 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
-        <maven.compiler.release>25</maven.compiler.release>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <surefire.version>3.2.5</surefire.version>
+
+        <csv.version>1.14.1</csv.version>
+        <JUnit.version>5.14.1</JUnit.version>
+        <mockito.version>5.21.0</mockito.version>
+
+        <plugin.version>3.6.3</plugin.version>
     </properties>
 
     <build>
@@ -25,7 +31,39 @@
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${plugin.version}</version>
+                <configuration>
+                    <mainClass>es.fplumara.dam1.prestamos.app.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <dependencies>
+
+        <!--CSV-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${csv.version}</version>
+        </dependency>
+
+        <!--JUnit-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${JUnit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Mockito-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+        </dependency>
+    </dependencies>
 </project>
