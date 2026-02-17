@@ -2,14 +2,11 @@ package es.fplumara.dam1.prestamos.repository;
 
 import es.fplumara.dam1.prestamos.model.Identificable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class BaseRepository <T extends Identificable> implements Repository<T>{
 
-    Map<String, T> datos;
+    Map<String, T> datos = new HashMap<>();
 
     @Override
     public void save(T elemento) {
@@ -19,7 +16,9 @@ public class BaseRepository <T extends Identificable> implements Repository<T>{
     @Override
     public Optional<T> findById(String id) {
         Optional<T> elemento = Optional.empty();
-        elemento = Optional.of(datos.get(id));
+        if(datos!= null){
+            elemento = Optional.of(datos.get(id));
+        }
 
         return elemento;
     }
