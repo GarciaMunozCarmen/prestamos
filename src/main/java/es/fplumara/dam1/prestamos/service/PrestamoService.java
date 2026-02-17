@@ -8,6 +8,7 @@ import es.fplumara.dam1.prestamos.model.Prestamo;
 import es.fplumara.dam1.prestamos.repository.Repository;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class PrestamoService {
     Repository<Material> materialRepository;
@@ -21,7 +22,10 @@ public class PrestamoService {
         } else if (!materialRepository.findById(idMaterial).get().getEstado().equals(EstadoMaterial.DISPONIBLE)) {
             throw new MaterialNoDisponible();
         }else{
-           return new Prestamo(); //NO TERMINADO
+           Prestamo prestamo = new Prestamo(UUID.randomUUID().toString(), idMaterial, profesor, fecha);
+           prestamoRepository.save(prestamo);
+           materialRepository.findById(idMaterial).get().setEstado(EstadoMaterial.PRESTADO);
+           return prestamo;
         }
     }
 }
