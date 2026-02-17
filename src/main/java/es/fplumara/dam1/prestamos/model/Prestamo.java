@@ -8,6 +8,13 @@ public class Prestamo implements Identificable{
     String profesor;
     LocalDate fecha;
 
+    public Prestamo(String id, String idMaterial, String profesor, LocalDate fecha) {
+        this.id = id;
+        this.idMaterial = idMaterial;
+        this.profesor = profesor;
+        this.fecha = fecha;
+    }
+
     // GETTER
     public String getId() {
         return id;
