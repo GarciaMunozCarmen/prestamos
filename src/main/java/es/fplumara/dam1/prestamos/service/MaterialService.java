@@ -20,7 +20,7 @@ public class MaterialService {
     public void registrarMaterial(Material m){
         if(m == null || m.getId().isEmpty() || m.getId() == null ||m.getId().isBlank()){
             throw new IllegalArgumentException();
-        }else if(materialRepository.findById(m.getId()).equals(m)){
+        }else if(materialRepository.listAll().contains(m)){
             throw new DuplicadoException();
         }else {
             materialRepository.save(m);

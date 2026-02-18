@@ -65,7 +65,7 @@ public class Main {
         portatiles.forEach(materialService::registrarMaterial);
         proyectores.forEach(materialService::registrarMaterial);
 
-
+        System.out.println(materialRepository.listAll());
 
         /*
          * 4) Crear un préstamo

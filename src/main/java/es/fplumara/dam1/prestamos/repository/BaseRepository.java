@@ -15,12 +15,7 @@ public class BaseRepository <T extends Identificable> implements Repository<T>{
 
     @Override
     public Optional<T> findById(String id) {
-        Optional<T> elemento = Optional.empty();
-        if(datos!= null){
-            elemento = Optional.of(datos.get(id));
-        }
-
-        return elemento;
+       return Optional.of(datos.get(id));
     }
 
     @Override
