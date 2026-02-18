@@ -8,6 +8,13 @@ public abstract class Material implements Identificable{
     EstadoMaterial estado;
     Set<String> etiquetas;
 
+    public Material(String id, String nombre, EstadoMaterial estado, Set<String> etiquetas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.etiquetas = etiquetas;
+    }
+
     // METODO ABSTRACTO
     abstract String getTipo();
 

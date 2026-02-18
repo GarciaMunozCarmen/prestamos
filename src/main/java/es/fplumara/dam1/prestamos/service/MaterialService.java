@@ -13,17 +13,21 @@ import java.util.Optional;
 public class MaterialService {
     Repository<Material> materialRepository;
 
-    void registrarMaterial(Material m){
+    public MaterialService(Repository<Material> materialRepository) {
+        this.materialRepository = materialRepository;
+    }
+
+    public void registrarMaterial(Material m){
         if(m == null || m.getId().isEmpty() || m.getId() == null ||m.getId().isBlank()){
             throw new IllegalArgumentException();
-        }else if(materialRepository.findById(m.getId()).equals(m)){
+        }else if(materialRepository.listAll().contains(m)){
             throw new DuplicadoException();
         }else {
             materialRepository.save(m);
         }
     }
 
-    void darDeBaja(String idMaterial){
+    public void darDeBaja(String idMaterial){
         Optional<Material> material = materialRepository.findById(idMaterial);
         if(material.isEmpty()){
             throw new NoEncontradoException();
@@ -35,7 +39,7 @@ public class MaterialService {
 
     }
 
-    List<Material> listar(){
+    public List<Material> listar(){
         return materialRepository.listAll();
     }
 }

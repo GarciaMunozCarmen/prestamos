@@ -15,7 +15,12 @@ public class PrestamoService {
     Repository<Material> materialRepository;
     Repository<Prestamo> prestamoRepository;
 
-    Prestamo crearPrestamo (String idMaterial, String profesor, LocalDate fecha){
+    public PrestamoService(Repository<Material> materialRepository, Repository<Prestamo> prestamoRepository) {
+        this.materialRepository = materialRepository;
+        this.prestamoRepository = prestamoRepository;
+    }
+
+    public Prestamo crearPrestamo (String idMaterial, String profesor, LocalDate fecha){
         if(idMaterial == null || idMaterial.isEmpty() || idMaterial.isBlank()|| profesor == null || profesor.isBlank() || profesor.isEmpty() || fecha == null){
             throw new IllegalArgumentException();
         } else if (materialRepository.findById(idMaterial).isEmpty()) {
@@ -30,7 +35,7 @@ public class PrestamoService {
         }
     }
 
-    void devolverMaterial(String idMaterial){
+    public void devolverMaterial(String idMaterial){
         if(idMaterial == null || idMaterial.isEmpty() || idMaterial.isBlank()){
             throw new IllegalArgumentException();
         } else if (materialRepository.findById(idMaterial).isEmpty()) {
@@ -42,7 +47,7 @@ public class PrestamoService {
         }
     }
 
-    List<Prestamo> listarPrestamos(){
+    public List<Prestamo> listarPrestamos(){
         return prestamoRepository.listAll();
     }
 }
