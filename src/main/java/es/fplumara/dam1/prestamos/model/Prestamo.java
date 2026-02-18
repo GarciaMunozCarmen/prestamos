@@ -15,6 +15,16 @@ public class Prestamo implements Identificable{
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString() {
+        return "Prestamo{" +
+                "id='" + id + '\'' +
+                ", idMaterial='" + idMaterial + '\'' +
+                ", profesor='" + profesor + '\'' +
+                ", fecha=" + fecha +
+                '}';
+    }
+
     // GETTER
     public String getId() {
         return id;

@@ -14,4 +14,15 @@ public class Proyector extends Material{
     String getTipo() {
         return "Proyector";
     }
+
+    @Override
+    public String toString() {
+        return "Proyector{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                ", lumens=" + lumens +
+                ", etiquetas=" + etiquetas +
+                '}';
+    }
 }

@@ -14,4 +14,15 @@ public class Portatil extends Material{
     String getTipo() {
         return "Portátil";
     }
+
+    @Override
+    public String toString() {
+        return "Portatil{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                ", ramGB=" + ramGB +
+                ", etiquetas=" + etiquetas +
+                '}';
+    }
 }
