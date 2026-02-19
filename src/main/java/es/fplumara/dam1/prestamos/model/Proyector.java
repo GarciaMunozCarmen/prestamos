@@ -11,7 +11,26 @@ public class Proyector extends Material{
     }
 
     @Override
-    String getTipo() {
-        return "Proyector";
+    public String getTipo() {
+        return "PROYECTOR";
+    }
+
+    @Override
+    public String toString() {
+        return "Proyector{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                ", lumens=" + lumens +
+                ", etiquetas=" + etiquetas +
+                '}';
+    }
+
+    public int getLumens() {
+        return lumens;
+    }
+
+    public void setLumens(int lumens) {
+        this.lumens = lumens;
     }
 }

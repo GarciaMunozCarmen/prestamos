@@ -16,7 +16,7 @@ public abstract class Material implements Identificable{
     }
 
     // METODO ABSTRACTO
-    abstract String getTipo();
+    public abstract String getTipo();
 
     // GETTERS Y SETTERS
 

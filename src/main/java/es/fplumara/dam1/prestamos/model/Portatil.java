@@ -11,7 +11,26 @@ public class Portatil extends Material{
     }
 
     @Override
-    String getTipo() {
-        return "Portátil";
+    public String getTipo() {
+        return "PORTATIL";
+    }
+
+    @Override
+    public String toString() {
+        return "Portatil{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                ", ramGB=" + ramGB +
+                ", etiquetas=" + etiquetas +
+                '}';
+    }
+
+    public int getRamGB() {
+        return ramGB;
+    }
+
+    public void setRamGB(int ramGB) {
+        this.ramGB = ramGB;
     }
 }
