@@ -52,9 +52,12 @@ public class Main {
          */
 
         CSVMaterialImporter csvMaterialImporter = new CSVMaterialImporter();
+
         List<RegistroMaterialCsv> registrosCSV = csvMaterialImporter.leer("data/materiales.csv");
+
         List<Portatil> portatiles = new ArrayList<>();
         List<Proyector> proyectores = new ArrayList<>();
+
         for(RegistroMaterialCsv r : registrosCSV){
             if(r.tipo().equalsIgnoreCase("PROYECTOR")){
                 proyectores.add(new Proyector(r.id(), r.nombre(), EstadoMaterial.valueOf(r.estado()), r.extra(), r.etiquetas()));
@@ -62,10 +65,9 @@ public class Main {
                 portatiles.add(new Portatil(r.id(), r.nombre(), EstadoMaterial.valueOf(r.estado()), r.extra(), r.etiquetas()));
             }
         }
+
         portatiles.forEach(materialService::registrarMaterial);
         proyectores.forEach(materialService::registrarMaterial);
-
-        System.out.println(materialRepository.listAll());
 
         /*
          * 4) Crear un préstamo
@@ -75,7 +77,7 @@ public class Main {
          */
 
         prestamoService.crearPrestamo("M001", "Iván", LocalDate.now());
-        System.out.println(materialRepository.findById("M001").get().getEstado().toString());
+        System.out.println("Estado: " + materialRepository.findById("M001").get().getEstado().toString());
 
         /*
          * 5) Listar por consola
@@ -83,13 +85,19 @@ public class Main {
          *    - Imprimir todos los préstamos (PrestamoService.listarPrestamos()) mostrando: id, idMaterial, profesor, fecha.
          */
 
-
+        System.out.println(materialService.listar());
+        System.out.println(prestamoService.listarPrestamos());
 
         /*
          * 6) Devolver el material
          *    - Llamar a PrestamoService.devolverMaterial("M001")
          *    - Comprobar que vuelve a estado DISPONIBLE
-         *
+         */
+
+        prestamoService.devolverMaterial("M001");
+        System.out.println("Estado: " + materialRepository.findById("M001").get().getEstado().toString());
+
+        /*
          * 7) Exportar a CSV (código proporcionado)
          *    - Convertir tu lista de Material a la estructura que pida el exporter (por ejemplo RegistroMaterialCsv).
          *    - Usar CsvMaterialExporter para escribir "salida_materiales.csv".
@@ -97,5 +105,19 @@ public class Main {
          * Nota:
          * - No hace falta interfaz, ni menú, ni pedir datos por teclado: valores fijos y salida por consola es suficiente.
          */
+
+        List<List<? extends Material>> materiales = List.of(portatiles, proyectores);
+        List<RegistroMaterialCsv> importerMaterialCsv = new ArrayList<>();
+
+        for (Portatil por : portatiles){
+            importerMaterialCsv.add(new RegistroMaterialCsv(por.getTipo(), por.getId(), por.getNombre(), String.valueOf(por.getEstado()),por.getRamGB(), por.getEtiquetas()));
+        }
+
+        for (Proyector pro : proyectores){
+            importerMaterialCsv.add(new RegistroMaterialCsv(pro.getTipo(), pro.getId(), pro.getNombre(), String.valueOf(pro.getEstado()),pro.getLumens(), pro.getEtiquetas()));
+        }
+
+        CSVMaterialExporter csvMaterialExporter = new CSVMaterialExporter();
+        csvMaterialExporter.escribir("./data/salida_materiales.csv", importerMaterialCsv);
     }
 }
