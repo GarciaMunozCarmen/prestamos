@@ -106,7 +106,6 @@ public class Main {
          * - No hace falta interfaz, ni menú, ni pedir datos por teclado: valores fijos y salida por consola es suficiente.
          */
 
-        List<List<? extends Material>> materiales = List.of(portatiles, proyectores);
         List<RegistroMaterialCsv> importerMaterialCsv = new ArrayList<>();
 
         for (Portatil por : portatiles){
